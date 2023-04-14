@@ -1,44 +1,29 @@
-import tkinter as tk
+import ttkbootstrap as ttk
 from pages.mainpage import MainPage
 
-page = [MainPage]
+page_data = [MainPage]
 
-class App(tk.Tk):
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
+class App(ttk.Window):
+    def __init__(self):
+        super().__init__(themename = "cyborg")
+        self.title("Youtube Downloader")
+
+        self.iconphoto(False, ttk.PhotoImage(file = r"./public/icon.png"))
 
         self.geometry("600x300")
-        self.title("Youtube Downloader")
-        self.iconphoto(False, tk.PhotoImage(file = r"./public/icon.png"))
-         
-        container = tk.Frame(self) 
-        container.pack(side = "top", fill = "both", expand = True)
-  
-        container.grid_rowconfigure(0, weight = 1)
-        container.grid_columnconfigure(0, weight = 1)
-  
-        # initializing frames to an empty array
-        self.frames = {} 
-  
-        # iterating through a tuple consisting
-        # of the different page layouts
-        for F in page:
-            frame = F(container, self)
-  
-            # initializing frame of that object from
-            # startpage, page1, page2 respectively with
-            # for loop
-            self.frames[F] = frame
-  
-            frame.grid(row = 0, column = 0, sticky ="nsew")
-  
-        self.show_frame(MainPage)
-  
-    def show_frame(self, cont):
-        frame = self.frames[cont]
-        frame.tkraise()
+        self.minsize(600, 300)
+
+        self.place_window_center()
+
+        MainPage(self)
+
+        self.mainloop()
+
+    def change_window(self, page):
+        # temp_page = self.pages[page]
+        # temp_page.tkraise()
+        print(page)
 
 
 if __name__ == "__main__":
-    app = App()
-    app.mainloop()
+    App()

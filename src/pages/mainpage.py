@@ -1,16 +1,17 @@
-import tkinter as tk
 import ttkbootstrap as ttk
 
-class MainPage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-         
+class MainPage(ttk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+
         # label of frame Layout 2
         label = ttk.Label(text ="Insert video link")
         label.pack()
 
-        link_input = ttk.Entry(textvariable = tk.StringVar())
+        link_input = ttk.Entry(textvariable = ttk.StringVar())
         link_input.pack()
+
+        parent.change_window("Hello")
          
         # putting the grid in its place by using
         # grid
