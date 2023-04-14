@@ -1,5 +1,5 @@
 import tkinter as tk
-from src.mainpage import MainPage
+from pages.mainpage import MainPage
 
 page = [MainPage]
 
