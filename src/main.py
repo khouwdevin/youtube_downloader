@@ -20,10 +20,8 @@ class App(ttk.Window):
         self.mainloop()
 
     def change_window(self, page):
-        # temp_page = self.pages[page]
-        # temp_page.tkraise()
-        print(page)
-
+        temp_page = self.pages[page]
+        temp_page.tkraise()
 
 if __name__ == "__main__":
     App()
