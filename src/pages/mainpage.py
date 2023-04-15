@@ -41,8 +41,6 @@ class MainPage(ttk.Frame):
                 selected_path = os.path.split(filedialog.asksaveasfilename(initialdir = "/", title = "Select folder", confirmoverwrite = True, filetypes = [(file_type[0], file_type[1])], initialfile = youtube_object.title))
                 
                 if (len(selected_path[0]) > 0):
-                    # youtube_object.register_on_progress_callback(self.progress_bar)
-
                     if (self.is_audio.get() == 1):
                         output = youtube_object.streams.get_audio_only().download(output_path = selected_path[0], filename = selected_path[1] + ".mp3")
                     else:
@@ -57,10 +55,3 @@ class MainPage(ttk.Frame):
         self.button.configure(state = "enabled", text = "Download")
         self.is_audio.set(0)
         self.link_input.delete(0, END)
-
-    # def progress_bar(self, stream, chunk, bytes_remaining):
-    #     total_size = stream.filesize
-    #     bytes_downloaded = total_size - bytes_remaining 
-    #     percentage_of_completion = bytes_downloaded / total_size * 100
-    #     self.progress_text.set(percentage_of_completion)
-    
