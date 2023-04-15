@@ -12,21 +12,30 @@ class MainPage(ttk.Frame):
 
         self.is_audio = ttk.IntVar()
         self.progress_text = ttk.StringVar()
+        self.link_text = ttk.StringVar()
+
+        self.link_text.trace("w", self.validation)
 
         label = ttk.Label(text ="Insert video link", font = "TimesNewRoman 18 bold")
         label.pack(pady = 10)
 
-        self.link_input = ttk.Entry(textvariable = ttk.StringVar(), width = 80)
+        self.link_input = ttk.Entry(textvariable = self.link_text, width = 80)
         self.link_input.pack()
 
         self.checkbutton = ttk.Checkbutton(bootstyle = "round-toggle", variable = self.is_audio, text = "Save only audio")
         self.checkbutton.pack(pady = 10)
 
-        self.button = ttk.Button(text = "Download", command = lambda:self.download_video(self.link_input.get()), bootstyle=(INFO, OUTLINE))
+        self.button = ttk.Button(text = "Download", command = lambda:self.download_video(self.link_input.get()), bootstyle=(INFO, OUTLINE), state = "disabled")
         self.button.pack(pady = 10)
 
         self.label_progress = ttk.Label(textvariable = self.progress_text, font = "TimesNewRoman 12")
         self.label_progress.pack()
+
+    def validation(self, *args):
+        if (len(self.link_text.get()) > 0):
+            self.button.configure(state = "enabled")
+        else:
+            self.button.configure(state = "disabled")
 
     def download_video(self, link):
         try:
