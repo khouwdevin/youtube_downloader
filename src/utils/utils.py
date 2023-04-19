@@ -10,3 +10,12 @@ def img_resource_path(relative_path):
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
+
+def replace_symbol(text: str):
+    replace_char = ["<", ">", "/", "\\", "?", ".", ":", "|"]
+    current_text = text
+
+    for i in replace_char:
+        current_text = current_text.replace(i, "")
+    
+    return current_text

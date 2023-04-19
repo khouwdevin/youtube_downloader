@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
 
-datas = [('public/icon.png')]
+datas = [('./public', 'public/')]
 binaries = []
 hiddenimports = []
 tmp_ret = collect_all('ttkbootstrap')
@@ -12,8 +12,8 @@ block_cipher = None
 
 
 a = Analysis(
-    ['D:/AAAWork/ZZZApp/youtube-downloader/src/main.py'],
-    pathex=['D:/AAAWork/ZZZApp/youtube-downloader/public'],
+    ['src\\main.py'],
+    pathex=[],
     binaries=binaries,
     datas=datas,
     hiddenimports=hiddenimports,
@@ -48,5 +48,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['D:\\AAAWork\\ZZZApp\\youtube-downloader\\public\\icon.ico'],
+    icon=['public\\icon.ico'],
 )
